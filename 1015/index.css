@@ -1,0 +1,12 @@
+body {
+  background-color: #1F6FC0;
+}
+a {
+  color: #ccc;
+}
+a:link {
+  color: red;
+}
+a:hover {
+  color: #1F6FC0;
+}
