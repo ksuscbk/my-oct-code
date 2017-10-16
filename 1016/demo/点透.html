@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>点透现象并解决</title>
+    <link rel="stylesheet" href="./clickfast.css">
+</head>
+<body>
+    <div class="box1"></div>
+    <div class="box2">tap</div>
+    <script src="./js/zepto.js"></script>
+    <script src="./js/fastclick.js"></script>
+    <script>
+        // 什么叫点透
+		// 你可能碰到过在列表页面上创建一个弹出层，弹出层有个关闭的按钮，
+		// 你点了这个按钮关闭弹出层后后，这个按钮正下方的内容也会执行点击事件（或打开链接）。
+		// 这个被定义为这是一个“点透”现象。
+        FastClick.attach(document.body);
+        $('.box2').tap(function () {
+            $(this).hide();
+            console.log("触发了tap事件");
+        })
+
+        $('.box1').click(function () {
+            console.log("触发了click事件");
+        })
+    </script>
+</body>
+</html>

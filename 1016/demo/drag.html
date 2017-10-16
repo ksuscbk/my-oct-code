@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>drag封装</title>
+    <style>
+        .box {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            width: 100px;
+            height: 100px;
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+
+    </div>
+    <script>
+        // var box = document.querySelector(".box");
+        // var startX, startY, endX, endY, bleft, btop;
+
+        // // 获取手指坐标  盒子一开始位置
+        // box.addEventListener("touchstart", function (e) {
+        //     startX = e.targetTouches[0].clientX;
+        //     startY = e.targetTouches[0].clientY;
+
+        //     bleft = this.offsetLeft;
+        //     btop = this.offsetTop;
+        // })
+        // // 结束时
+        // box.addEventListener("touchmove", function (e) {
+        //     endX = e.changedTouches[0].clientX;
+        //     endY = e.changedTouches[0].clientY;
+
+        //     this.style.left = bleft + endX - startX + 'px';
+        //     this.style.top = btop + endY -startY + 'px';
+        // })
+
+
+
+        var box = document.querySelector(".box");
+        var statrX, startY, endX, endY, bLeft, bTop;
+        
+        // 获取手指按下时的坐标以及盒子的坐标
+        box.addEventListener("touchstart", function (e) {
+            startX = e.targetTouches[0].clientX;
+            startY = e.targetTouches[0].clientY;
+            bLeft = this.offsetLeft;
+            bTop = this.offsetTop;
+        })
+        
+        // 获取手指离开屏幕时的坐标并计算盒子应该到的坐标赋值
+        box.addEventListener("touchmove", function (e) {
+            endX = e.changedTouches[0].clientX;
+            endY = e.changedTouches[0].clientY;
+            this.style.left = bLeft + endX - startX + 'px';
+            this.style.top = bTop + endY -startY + 'px';
+        })
+    </script>
+</body>
+</html>

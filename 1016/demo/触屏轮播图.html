@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>触屏轮播图</title>
+    <style>
+        html, body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        .carousel {
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        ul {
+            position: relative;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+
+        ul li {
+            float: left;
+            width: 100%;
+        }
+
+        li a {
+            display: block;
+            width: 100%;
+        }
+
+        img {
+            width: 100%;
+            height: auto;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body>
+    <div class="carousel">
+        <ul>
+            <li><a href="javascript:;"><img src="./image/0.png" alt=""></a></li>
+            <li><a href="javascript:;"><img src="./image/1.png" alt=""></a></li>
+            <li><a href="javascript:;"><img src="./image/2.png" alt=""></a></li>
+            <li><a href="javascript:;"><img src="./image/3.png" alt=""></a></li>
+            <li><a href="javascript:;"><img src="./image/4.png" alt=""></a></li>
+            <li><a href="javascript:;"><img src="./image/5.png" alt=""></a></li>
+            <li><a href="javascript:;"><img src="./image/6.png" alt=""></a></li>
+            <li><a href="javascript:;"><img src="./image/7.png" alt=""></a></li>
+        </ul>
+    </div>
+    <script>
+        // 触屏轮播图
+        // 获取元素，并根据原理布局
+        var carousel = document.querySelector(".carousel");
+        var ul = document.querySelector('ul');
+        var firstLi = ul.querySelector('li:first-child');
+        var lastLi = ul.querySelector('li:last-child');
+        var aLi, index=0, startX, endX, timer;
+        var cWidth = carousel.offsetWidth;
+        
+        init();
+        
+        // 监测索引，调整     webkitTransitionEnd
+        ul.addEventListener('webkitTransitionEnd', function () {
+            if (index == 0) {
+                index = -8;
+            }
+            if (index == -9) {
+                index = -1;
+            }
+            ul.style.left = index * cWidth + 'px';
+            ul.style.transition = '';
+        })
+        // 手指调整轮播
+        // 初始x坐标
+        ul.addEventListener('touchstart', function (e) {
+            clearInterval(timer);
+            startX = e.targetTouches[0].clientX;
+        })
+        // 结束x坐标
+        ul.addEventListener('touchend', function (e) {
+            autoplay();
+            endX = e.changedTouches[0].clientX;
+
+            // 判断手指滑动方向
+            startX > endX ? index-- : index++;
+            // ul移动
+            ul.style.left = index * cWidth + 'px';
+            ul.style.transition = 'all 1s';
+        })
+        
+
+
+        function init() {
+            ul.appendChild(firstLi.cloneNode(true));
+            ul.insertBefore(lastLi.cloneNode(true), firstLi);
+            // ul.appendChild(ul.firstChild.cloneNode(true));
+            // ul.insertBefore(ul.lastChild.cloneNode(true), ul.firstChild);
+            // 获取li供后面操作
+            aLi = document.querySelectorAll('li');
+            // 设置ul和li的宽度
+            setWidth();
+            // 显示第一张图片
+            index--;
+            ul.style.left = index * cWidth + 'px';
+            // 自动播放
+            autoplay();
+        }
+
+        function setWidth() {
+            carousel.style.width = cWidth + 'px';
+            ul.style.width = aLi.length * cWidth + 'px';
+            for (var i = 0; i < aLi.length; i++) {
+                aLi[i].style.width = cWidth + 'px';
+            }
+        }
+
+        function autoplay () {
+            timer = setInterval(function () {
+                index--;
+                ul.style.left = index * cWidth + 'px';
+                ul.style.transition = 'all 1s';
+            }, 1500)
+        }
+        
+    </script>
+</body>
+</html>

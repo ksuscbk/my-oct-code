@@ -1,0 +1,21 @@
+@media screen and (width: 320px) {
+  body {
+    font-size: 16px;
+  }
+}
+.box1 {
+  position: absolute;
+  width: 4.375rem;
+  height: 4.375rem;
+  background-color: #f00;
+  top: 3.125rem;
+  left: 3.125rem;
+}
+.box2 {
+  position: absolute;
+  width: 2.5rem;
+  height: 2.5rem;
+  background-color: #000;
+  top: 4rem;
+  left: 4rem;
+}

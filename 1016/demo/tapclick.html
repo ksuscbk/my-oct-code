@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>触屏事件</title>
+	<style>
+		body {
+			padding: 0;
+			margin: 0;
+			background-color: #F7F7F7;
+		}
+
+		.box {
+			width: 320px;
+			height: 400px;
+			margin: 10px auto;
+			background-color: aqua;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="box"></div>
+
+	<script>
+        // 在开始和结束时获取点击位置坐标，差不多的话判定为单击事件
+		var box = document.querySelector(".box");
+        var startX, startY, endX, endY, startTime, endTime;
+
+        box.addEventListener("touchstart", function (e) {
+            startTime = new Date().getTime();
+            startX = e.targetTouches[0].clientX;
+            startY = e.targetTouches[0].clientY;
+        })
+
+        box.addEventListener("touchend", function (e) {
+            endTime = new Date().getTime();
+            endX = e.changedTouches[0].clientX;
+            endY = e.changedTouches[0].clientY;
+
+            // 判断是否为点击事件
+            if (Math.abs(startX - endX) < 5 && Math.abs(startY - endY) < 5 && (endTime - startTime) < 500) {
+                alert("tap单击事件触发");
+            }
+        })
+		
+	</script>
+</body>
+
+</html>
+	</script>
+</body>
+
+</html>

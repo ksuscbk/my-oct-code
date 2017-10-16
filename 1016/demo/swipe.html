@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>swipe手势封装</title>
+</head>
+<body>
+    <script>
+        // 判断用户的操作是向哪个方向划
+        var startX, startY, endX, endY, absX, absY;
+        // 获取开始时的位置
+        document.addEventListener("touchstart", function (e) {
+            startX = e.targetTouches[0].clientX;
+            startY = e.targetTouches[0].clientY;
+        })
+        // 获取结束时的位置 用坐标的x，y值的绝对值判断用户操作类型
+        document.addEventListener("touchend", function (e) {
+            endX = e.changedTouches[0].clientX;
+            endY = e.changedTouches[0].clientY;
+
+            absX = Math.abs(endX - startX);
+            absY = Math.abs(endY - startY);
+            
+            var direction = absX > absY ? endX > startX ? '向右' : '向左' : endY > startY ? '向下' : '向上';
+            // var xDirection = endX > startX ? '向右' : '向左';
+            // var yDirection = endY > startY ? '向下' : '向上';
+            
+            console.log(direction);
+
+        })
+    </script>
+</body>
+</html>

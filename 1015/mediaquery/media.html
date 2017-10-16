@@ -7,7 +7,7 @@
     <title>Document</title>
     <!-- respond.js是为了解决低版本浏览器不兼容媒体查询的插件
     使用方法  和  html5shiv.js一样的使用方法  -->
-    <!--[if lte IE 8]>
+    <!--[if lt IE 9]>
         <script src="./js/respond.js"></script>   
     <![endif]-->
     <style>
@@ -76,10 +76,7 @@
             }
         } */
 
-        /* [if lte IE 8]>
-        <script src="./js/respond.js"></script>   
-        [endif] */
-
+        
         /* 横屏竖屏 */
         @media screen and (orientation: portrait) {
             body {
@@ -91,10 +88,6 @@
                 background-color: blue;
             }
         }
-
-        /* [if lte IE 8]>
-        <script src="./js/respond.js"></script>   
-        [endif] */
     </style>
 </head>
 <body>
