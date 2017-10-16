@@ -73,4 +73,50 @@ main {
     background-color: @white;
     margin-top: 32rem/32;
     height: 526rem/32;
+    font-size: 30rem/32;
+    margin-bottom: 48rem/32;
+
+    & > div {
+        box-sizing: border-box;
+        padding-left: 24rem/32;
+        height: 104rem/32;
+        line-height: 104rem/32;
+        border-top: 1px solid rgba(232, 232, 232, 0.8);
+    }
+
+    .price div {
+        box-sizing: border-box;
+        padding-top: 32rem/32;
+        line-height: 30rem/32;
+        float: left;
+    }
+
+    .price .one {
+        position: relative;
+        width: 366rem/32;
+        height: 100%;
+        border-right: 1px solid rgba(232, 232, 232, .8);
+
+        .tips {
+            font-size: 20rem/32;
+            color: @quantityColor;
+            position: absolute;
+            top: 64rem/32;
+            left: 0;
+        }
+    }
+    .price .two {
+        position: relative;
+        width: 220rem/32;
+        height: 100%;
+        padding-left: 24rem/32;
+    }
+
+    .price .rmb {
+        position: absolute;
+        right: 20rem/32;
+        top: 32rem/32;
+        color: @quantityColor;
+    }
+    
 }

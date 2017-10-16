@@ -603,4 +603,44 @@ main {
   background-color: #fff;
   margin-top: 1rem;
   height: 16.4375rem;
+  font-size: 0.9375rem;
+  margin-bottom: 1.5rem;
+}
+main > div {
+  box-sizing: border-box;
+  padding-left: 0.75rem;
+  height: 3.25rem;
+  line-height: 3.25rem;
+  border-top: 1px solid rgba(232, 232, 232, 0.8);
+}
+main .price div {
+  box-sizing: border-box;
+  padding-top: 1rem;
+  line-height: 0.9375rem;
+  float: left;
+}
+main .price .one {
+  position: relative;
+  width: 11.4375rem;
+  height: 100%;
+  border-right: 1px solid rgba(232, 232, 232, 0.8);
+}
+main .price .one .tips {
+  font-size: 0.625rem;
+  color: #888;
+  position: absolute;
+  top: 2rem;
+  left: 0;
+}
+main .price .two {
+  position: relative;
+  width: 6.875rem;
+  height: 100%;
+  padding-left: 0.75rem;
+}
+main .price .rmb {
+  position: absolute;
+  right: 0.625rem;
+  top: 1rem;
+  color: #888;
 }
