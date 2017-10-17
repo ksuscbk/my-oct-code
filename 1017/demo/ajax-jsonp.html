@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>jsonp解决ajax跨域请求资源问题</title>
+</head>
+<body>
+    <input type="text" id="inp">
+    <div id="box"></div>
+
+    <script>
+        var inp = document.getElementById("inp");
+        var box = document.getElementById("box");
+        
+        // addEvent(inp, "input", function () {
+        //     var val = this.val;
+
+        //     if (document.getElementsByClassName("sc")) {
+        //         document.getElementsByClassName("sc").remove();
+        //     }
+
+
+        //     var sp = document.createElement("script");
+        //     sp.className = "sc";
+        //     sp.src = "https://sug.so.360.cn/suggest?callback=suggest_so&encodein=utf-8&encodeout=utf-8&format=json&fields=word&word=" + val;
+
+        //     document.body.appendChild(sp);
+        // })
+
+        inp.addEventListener("input", function (){
+            var val = this.value;
+
+            if (document.querySelector(".sc")) {
+                document.querySelector(".sc").remove();
+            }
+
+
+            var sp = document.createElement("script");
+            sp.className = "sc";
+            sp.src = "https://sug.so.360.cn/suggest?callback=suggest_so&encodein=utf-8&encodeout=utf-8&format=json&fields=word&word=" + val;
+
+            document.body.appendChild(sp);
+        })
+
+        function suggest_so(data) {
+            console.log(data);
+            box.innerHTML = '';
+            for (var i = 0; i < data.result.length; i++) {
+                var p = document.createElement("p");
+                p.innerHTML = data.result[i].word;
+                box.appendChild(p);
+            }
+        }
+
+        // function addEvent (obj, e, func) {
+        //     obj.addEventListener ? obj.addEventListener(e, func, false) : obj.attachEvent;
+        // }
+    </script>
+</body>
+</html>

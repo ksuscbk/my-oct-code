@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>jQueryajax模拟360搜索</title>
+    <style>
+        li {
+            list-style: none;
+        }
+    </style>
+</head>
+<body>
+    <input type="text">
+    <div id="box"></div>
+    <script src="./js/jquery.min.js"></script>
+    <script>
+        $("input").on("input", function () {
+            $.ajax({
+                url: "https://sug.so.360.cn/suggest?callback=suggest_so&encodein=utf-8&encodeout=utf-8&format=json&fields=word&word=" + $(this).val(),
+                dataType: 'jsonp',
+                success: function (data) {
+                    // console.log(data);
+                    // 每次发送ajax请求清空div的内容
+                    $("#box").html("");
+
+                    // var str = "";
+                    for (var i = 0; i < data.result.length; i++) {
+                        // 创建标签放到div中
+                        var li = document.createElement('li');
+                        li.innerHTML = data.result[i].word;
+                        $("#box").append(li);
+
+
+                        // 拼接字符串的方法
+                        // str += "<li>" + data.result[i].word + "</li>";
+                        // $("#box").html(str);
+                    }
+                }
+            });
+        })
+    </script>
+</body>
+</html>

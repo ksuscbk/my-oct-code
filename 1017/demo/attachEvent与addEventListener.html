@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>attachEvent 与 addEventListener</title>
+</head>
+<body>
+    <button id="btn">
+        test button
+    </button>
+
+    <p>
+        测试发现，firefox, chrome, IE9+, safari, opera都不兼容attachEvent()，只有IE7，IE8支持
+         addEventListener()只有IE7， IE8不支持，其余都支持;
+    </p>
+    <script>
+        var oBtn = document.getElementById("btn");
+
+        function test1 () {
+            alert("function test1");
+        }
+
+        function test2 () {
+            alert("function test2");
+        }
+
+        function test3 () {
+            alert("function test3");
+        }
+        
+        function demo (obj, e, func) {
+            // obj.attachEvent("on" + e, func);
+            obj.attachEvent ? obj.attachEvent("on" + e, func) : obj.addEventListener(e, func, false);
+        }
+
+        demo(oBtn, "click", test1);
+        // demo(oBtn, "click", test2);
+        // demo(oBtn, "click", test3);
+    </script>
+</body>
+</html>

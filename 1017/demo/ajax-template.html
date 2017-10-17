@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ajax template模板引擎使用</title>
+    <style>
+        li {
+             list-style: none;
+        }
+    </style>
+</head>
+<body>
+    <input type="text">
+    <div id="box"></div>
+    <script src="./js/jquery.min.js"></script>
+    <script src="./js/template-web.js"></script>
+    <script type="text/template" id='tp'>
+        {{ each result }}
+            <li> {{$value.word}} </li>
+        {{ /each }}
+    </script>
+    <script>
+        $("input").on("input", function () {
+            $.ajax({
+                url: "https://sug.so.360.cn/suggest?callback=suggest_so&encodein=utf-8&encodeout=utf-8&format=json&fields=word&word=" + $(this).val(),
+                dataType: "jsonp",
+                success: function (data) {
+                    var a = template('tp', data);
+                    $("#box").html(a);
+                }
+            });
+        })
+    </script>
+</body>
+</html>
