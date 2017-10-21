@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>canvas镂空矩形</title>
+</head>
+<body>
+    <p>lineDash()</p>
+    <p>参数个数为奇数个时，会将参数整体复制一份添加到参数末尾，参数从第一个起为线段长度与空隙长度排列</p>        
+    <canvas>您的浏览器不支持canvas，赶快升级吧</canvas>
+    <script>
+        var c = document.getElementsByTagName("canvas")[0];
+        c.width = 1200;
+        c.height = 500;
+
+        // 画笔
+        var pen = c.getContext("2d");
+
+        pen.moveTo(100,150);
+        pen.lineTo(1000, 150);
+        // pen.setLineDash([10]);
+        // pen.setLineDash([10,20]);
+        pen.setLineDash([10, 20, 40]);
+        
+        pen.stroke();
+
+    </script>
+</body>
+</html>

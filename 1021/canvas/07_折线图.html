@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>canvas折线图</title>
+    <style>
+        body {
+            background-color: silver;
+        }
+        canvas {
+            display: block;
+            margin: 100px auto;
+            background-color: skyblue;
+        }
+    </style>
+</head>
+<body>
+    <canvas>您的浏览器版本可以作为古董去市场坐地起价了。</canvas>
+    <script>
+        var c = document.getElementsByTagName("canvas")[0];
+        // 因为我的电脑屏幕是1366的
+        c.width = 950;
+        c.height = 400;
+        c.style.border = "1px solid #000";
+
+        var pen = c.getContext("2d");
+        // 坐标轴距画布边距为20
+        var space = 20;
+        // 原点坐标
+        var zeroX = space;
+        var zeroY = c.height - space;
+        // 箭头大小
+        var arrowSize = 10;
+        // 数据坐标
+        var data = [
+            {
+                x: 100,
+                y: 300
+            },
+            {
+                x: 200,
+                y: 100
+            },
+            {
+                x: 300,
+                y: 280
+            },
+            {
+                x: 400,
+                y: 240
+            },
+            {
+                x: 500,
+                y: 300
+            },
+            {
+                x: 600,
+                y: 120
+            },
+            {
+                x: 700,
+                y: 220
+            },
+            {
+                x: 800,
+                y: 140
+            },
+            {
+                x: 900,
+                y: 120
+            }
+        ]
+
+
+        // X轴
+        pen.moveTo(zeroX, zeroY);
+        pen.lineTo(c.width - space,zeroY);
+        // 小箭头
+        pen.lineTo(c.width - arrowSize - space, c.height - space - arrowSize / 2);
+        pen.lineTo(c.width - arrowSize - space, c.height - space / 2 - arrowSize / 2);  
+        pen.lineTo(c.width - space, zeroY);
+        pen.fill();
+        pen.stroke();
+
+        // Y轴
+        pen.moveTo(zeroX, zeroY);
+        pen.lineTo(zeroX, space);
+        pen.lineTo(space - arrowSize / 2, space + arrowSize);
+        pen.lineTo(space + arrowSize / 2, space + arrowSize);
+        pen.lineTo(zeroX, space);
+        pen.fill();
+        pen.stroke();
+
+        // 数据点的坐标
+        // 原点到第一个点的线
+        pen.moveTo(space, c.height - space);
+        pen.lineTo(data[0].x, data[0].y);
+        pen.stroke();
+            // 点的大小
+        var dataSize = 10;
+        for (var i = 0; i < data.length; i++) {
+            pen.moveTo(data[i].x - dataSize / 2, data[i].y + dataSize / 2);
+            pen.lineTo(data[i].x + dataSize / 2, data[i].y + dataSize / 2);
+            pen.lineTo(data[i].x + dataSize / 2, data[i].y - dataSize / 2);
+            pen.lineTo(data[i].x - dataSize / 2, data[i].y - dataSize / 2);
+            pen.lineTo(data[i].x - dataSize / 2, data[i].y + dataSize / 2);
+            pen.fill();
+            pen.stroke();
+
+            pen.moveTo(data[i].x, data[i].y);
+            pen.lineTo(data[i + 1].x, data[i + 1].y);
+            pen.stroke();
+
+        }
+        
+    </script>
+</body>
+</html>
