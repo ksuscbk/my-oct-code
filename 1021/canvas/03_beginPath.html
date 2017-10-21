@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <canvas></canvas>
+    <script>
+        var c = document.getElementsByTagName("canvas")[0];
+
+        c.width = 1200;
+        c.height = 400;
+
+        var context = c.getContext('2d');
+
+        // canvas默认会开启一个新路径  首个操作可以不用开启新路径beginPath();   单个stroke()里面的设置项如果重复，后面的会覆盖前面的
+
+        context.moveTo(100, 100);
+        context.lineTo(200, 150);
+        context.strokeStyle = "red";
+        context.lineWidth = 10;
+        context.stroke();
+
+        context.beginPath();
+        context.moveTo(200, 100);
+        context.lineTo(300, 150);
+        context.strokeStyle = "blue";
+        context.lineWidth = 10;
+        context.stroke();
+
+        context.beginPath();        
+        context.moveTo(300, 100);
+        context.lineTo(400, 150);
+        context.strokeStyle = "aqua";
+        context.lineWidth = 5;
+        context.stroke();
+
+        context.beginPath();        
+        context.moveTo(400, 100);
+        context.lineTo(500, 150);
+        context.strokeStyle = "silver";
+        context.lineWidth = 10;
+        context.stroke();
+
+        context.beginPath();        
+        context.moveTo(500, 100);
+        context.lineTo(600, 150);
+        context.strokeStyle = "green";
+        context.lineWidth = 5;
+        context.stroke();
+    </script>
+</body>
+</html>

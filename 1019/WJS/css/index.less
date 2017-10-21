@@ -637,6 +637,60 @@ body {
 
 // 响应式 在低于980px的屏幕上
 @media screen and (max-width: 980px) {
+    // topnav
+    .topnav {
+        width: 100%;
+        border: 1px solid @topBorderColor;
+        height: @topHeight;
+        background-color: @white;
+
+        .container {
+            width: 750px;
+            margin: 0 auto;
+            overflow: hidden;
+            
+            > div {
+                float: left;
+                line-height: @topHeight;
+                // border-left: 1px solid @topBorderColor;
+                text-align: center;
+                color: #666;
+                font-size: 12px;
+            }
+            .service {
+                border-left: none;
+            }
+            a {
+                color: #666;
+            }
+        }
+
+        .qrcode {
+            display: none;
+            width: @qrcodeWidth;            
+          }
+        
+         
+        
+          .extra {
+            width: @extraWidth;
+          }
+        
+          .join {
+            width: @joinWidth;
+            
+            .signup {
+              padding: 3px 5px;
+              background-color: rgb(248, 24, 24);
+              color:@white;
+              font-size: 14px;
+              border-radius: @topRadius;
+            }
+            .signin {
+              font-size: 14px;
+            }
+          }
+    }
     // 导航
     .nav {
         .container {
@@ -646,6 +700,14 @@ body {
         ul {
             overflow: hidden;
         }
+
+    }
+
+    .expertise {
+        width: 750px;
+    }
+    // 借贷
+    .loan {
 
     }
 }

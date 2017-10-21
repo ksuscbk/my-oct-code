@@ -1062,10 +1062,57 @@ body {
   vertical-align: middle;
 }
 @media screen and (max-width: 980px) {
+  .topnav {
+    width: 100%;
+    border: 1px solid #c6cbcf;
+    height: 40px;
+    background-color: #fff;
+  }
+  .topnav .container {
+    width: 750px;
+    margin: 0 auto;
+    overflow: hidden;
+  }
+  .topnav .container > div {
+    float: left;
+    line-height: 40px;
+    text-align: center;
+    color: #666;
+    font-size: 12px;
+  }
+  .topnav .container .service {
+    border-left: none;
+  }
+  .topnav .container a {
+    color: #666;
+  }
+  .topnav .qrcode {
+    display: none;
+    width: 228px;
+  }
+  .topnav .extra {
+    width: 180px;
+  }
+  .topnav .join {
+    width: 242px;
+  }
+  .topnav .join .signup {
+    padding: 3px 5px;
+    background-color: #f81818;
+    color: #fff;
+    font-size: 14px;
+    border-radius: 3px;
+  }
+  .topnav .join .signin {
+    font-size: 14px;
+  }
   .nav .container {
     width: 750px;
   }
   .nav ul {
     overflow: hidden;
+  }
+  .expertise {
+    width: 750px;
   }
 }

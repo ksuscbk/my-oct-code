@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <canvas></canvas>
+    <script>
+        var cvs = document.getElementsByTagName("canvas")[0];
+        cvs.width = 1350;
+        cvs.height = 600;
+        cvs.style.border = "1px solid #333";
+
+        // 画笔
+        var context = cvs.getContext('2d');
+        // var context3d = cvs.getContext('webgl');
+        // console.log(context);
+        // console.log(context3d);
+
+        // 起点  终点
+        context.moveTo(180, 140);
+        context.lineTo(300, 140);
+
+        context.moveTo(250, 140);
+        context.lineTo(250, 500);
+        
+        context.moveTo(250, 500);
+        context.lineTo(200, 440);
+
+        context.moveTo(250, 500);
+        context.lineTo(200, 440);
+
+        context.moveTo(350, 140);
+        context.lineTo(450, 140);
+
+        context.moveTo(400, 140);
+        context.lineTo(400, 500);
+
+        context.moveTo(350, 500);
+        context.lineTo(450, 500);
+
+        context.moveTo(570, 140);
+        context.lineTo(500, 500);
+
+        context.moveTo(570, 140);
+        context.lineTo(640, 500);
+
+        context.moveTo(534, 320);
+        context.lineTo(605, 320);
+        // 线宽
+        context.lineWidth = 10;
+        // 线颜色
+        context.strokeStyle = "aqua";
+        // 线末端类型  butt默认    round圆角   square方角
+        context.lineCap = 'round';
+
+        // 设置线拐点的样式  miter 默认     round圆角    bevel平角
+        context.lineJoin = 'round';
+        // 描边
+        context.stroke();
+
+        // fillStyle 填充样式
+        // context.fillStyle = 'red';
+        context.fill();
+        
+    </script>
+</body>
+</html>
