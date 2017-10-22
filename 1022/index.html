@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>vue</title>
+</head>
+<body>
+    <div id="box">
+        {{msg}}
+    </div>
+    <script src="./js/vue.min.js"></script>
+    <script>
+        var c = new Vue({
+            // el: '选择器'
+            el: '#box',
+            data: {
+                msg: 'welcome vue.js'
+            }
+        });
+
+        // var a = 1;
+        // var d = 1;
+        // function b () {
+        //     a = 10;
+        //     d = 10;
+        //     return;
+        //     function a () {
+
+        //     }
+        // }
+
+        // b();
+        // alert(a);
+        // alert(d);
+
+
+        // (function fn() {
+        //     'use strict';
+        //     var a = b = 5;
+        // })();
+
+        // console.log(a,b);
+        // console.log(a);
+        // console.log(b);
+
+
+        // var c;
+        // function c () {};
+        // console.log(c);
+
+    </script>
+</body>
+</html>
