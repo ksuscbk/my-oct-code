@@ -45,7 +45,7 @@
                     <td>{{item.name}}</td>
                     <td>{{item.age}}</td>
                     <td>
-                        <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#layer" v-on:click="nowIndex=$index">删除</button>
+                        <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#layer" v-on:click="nowIndex=index">删除</button>
                     </td>
                 </tr>
                 <!-- 数据不为空显示 -->
@@ -63,7 +63,7 @@
             </table>
 
             <!-- 模态框 -->
-            <div role="dialog" class="modal" id="layer">
+            <div role="dialog" class="modal fade bs-example-modal-sm" id="layer">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
