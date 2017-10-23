@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>canvas圆弧</title>
+</head>
+<body>
+    <canvas></canvas>
+    <script>
+        var canvas = document.getElementsByTagName("canvas")[0];
+        canvas.width = 1200;
+        canvas.height = 400;
+        canvas.style.border = "1px solid #333";
+
+        var pen = canvas.getContext('2d');
+
+        // 使用画圆的方法画圆弧 pen.arc(圆心坐标，半径，开始角度，结束角度)
+        pen.strokeStyle = "aqua";
+        pen.moveTo(canvas.width/3, canvas.height/2);
+        pen.arc(canvas.width/3, canvas.height/2, 100, 30*Math.PI/180, 150*Math.PI/180);
+        pen.fillStyle = "aqua";
+        pen.closePath();
+        pen.fill();
+        pen.stroke();
+    </script>
+</body>
+</html>

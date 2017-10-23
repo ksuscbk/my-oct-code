@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <canvas></canvas>
+    <script>
+        var canvas = document.getElementsByTagName("canvas")[0];
+        canvas.width = 1200;
+        canvas.height = 400;
+        canvas.style.border = "1px solid #333";
+        var pen = canvas.getContext('2d');
+    
+        var getRanCol = function () {
+            var r = Math.floor(Math.random()*256);
+            var g = Math.floor(Math.random()*256);
+            var b = Math.floor(Math.random()*256);
+            return "rgb(" + r + "," + g + "," + b + ")";
+        }
+
+        // 分为180份
+        var n = 180;
+
+        // 定时器
+        setInterval(function() {
+            var start = 0;
+            for (var i = 0; i < n; i++) {
+                pen.beginPath();
+                pen.moveTo(canvas.width / 2, canvas.height / 2);
+                pen.arc(canvas.width/2, canvas.height/2, 150, start, start + 2*Math.PI/180);
+                pen.closePath();
+                pen.fillStyle = getRanCol();
+                pen.fill();
+                start = start + 2*Math.PI/n;
+                // canvas.style.backgroundColor = getRanCol();
+            }
+        }, 100);
+    </script>
+</body>
+</html>

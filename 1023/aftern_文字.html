@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <p>1、填充文字 pen.fillText(文字，文字左下角x坐标，y坐标)</p>
+    <p>2、描边文字 pen.strokeText(文字，文字左下角x坐标，y坐标)</p>
+    <p>3、文字大小及字体pen.font</p>  
+    <p>4、水平对齐方式 pen.textAlign='left' 'center' 'right'</p>  
+    <p>5、基线 pen.textBaseLine='middle' 'top' 'bottom'</p>  
+    <p>6、获取文字宽度 var width = pen.mesureText().width</p>
+    <canvas></canvas>
+    <script>
+        var canvas = document.getElementsByTagName("canvas")[0];
+        canvas.width = 1200;
+        canvas.height = 400;
+        canvas.style.border = "1px solid #333";
+        // canvas.style.backgroundColor = 'rgb(0, 0, 100)';
+
+        setInterval(function(){
+            // canvas.style.backgroundColor = getRanCol();
+            canvas.style.backgroundColor = getRanCol();
+            // console.log(getRanCol());
+            // console.log(canvas.style.backgroundColor);
+        }, 2000);
+        
+    
+        var pen = canvas.getContext('2d');
+    
+        // 填充文字 pen.fillText(文字，文字左下角x坐标，y坐标)
+            // 文字大小及字体pen.font
+            // 水平对齐方式 pen.textAlign='left' 'center' 'right'
+            // 基线 pen.textBaseLine='middle' 'top' 'bottom'
+            // 获取文字宽度 var width = pen.mesureText().width
+        pen.font = '80px 楷体';           
+        pen.textAlign = 'center'; 
+        pen.textBaseLine = 'top';
+        pen.fillText('淡泊明志', 400, 200);
+        
+        // 描边文字 pen.strokeText(文字，文字左下角x坐标，y坐标)
+        pen.font = '80px';
+        pen.textAlign = 'center';
+        pen.strokeText('宁静致远', 800, 200);   
+
+        function getRanCol () {
+            var r, g, b;
+            r = Math.floor(Math.random()*256);
+            g = Math.floor(Math.random()*256);
+            b = Math.floor(Math.random()*256);
+            return "rgb(" + r + "," + g + "," + b + ")";
+        }     
+    </script>
+</body>
+</html>
