@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>面向对象折线图</title>
+</head>
+<body>
+    <canvas></canvas>
+    <script>
+        // 准备数据
+        var data = [
+            {
+                x: 100,
+                y: 300
+            },
+            {
+                x: 200,
+                y: 100
+            },
+            {
+                x: 300,
+                y: 280
+            },
+            {
+                x: 400,
+                y: 240
+            },
+            {
+                x: 500,
+                y: 300
+            },
+            {
+                x: 600,
+                y: 120
+            },
+            {
+                x: 700,
+                y: 220
+            },
+            {
+                x: 800,
+                y: 140
+            },
+            {
+                x: 900,
+                y: 120
+            }
+        ]
+        // 创建构造函数
+        var LineChart = function () {
+            this.canvas = document.getElementsByTagName("canvas")[0];
+            this.canvas.width = 1200;
+            this.canvas.height = 400;
+            this.canvas.style.border = "1px solid aqua";
+            this.pen = this.canvas.getContext('2d');
+
+            this.width = this.canvas.width;
+            this.height = this.canvas.height;
+            this.space = 20;
+            this.zeroX = this.space;
+            this.zeroY = this.height - this.space;
+
+            this.arrow = 10;
+            this.square = 8;
+        }
+
+        // 给实例添加绘制坐标的方法
+        LineChart.prototype.drawAxis = function () {
+            // x轴
+            this.pen.moveTo(this.zeroX, this.zeroY);
+            this.pen.lineTo(this.width - this.space, this.zeroY);
+
+            this.pen.lineTo(this.width - this.arrow - this.space, this.height - this.space - this.arrow / 2);
+            this.pen.lineTo(this.width - this.arrow - this.space, this.height - this.space / 2 - this.arrow / 2);  
+            this.pen.lineTo(this.width - this.space, this.zeroY);
+            this.pen.fill();
+            this.pen.stroke();
+
+            // y轴
+            this.pen.moveTo(this.zeroX, this.zeroY);
+            this.pen.lineTo(this.zeroX, this.space);
+            this.pen.lineTo(this.space - this.arrow / 2, this.space + this.arrow);
+            this.pen.lineTo(this.space + this.arrow / 2, this.space + this.arrow);
+            this.pen.lineTo(this.zeroX, this.space);
+            this.pen.fill();
+            this.pen.stroke();
+
+        }
+
+        // 给实例添加绘制小方块的方法
+        LineChart.prototype.drawSquare = function (data) {
+            this.pen.beginPath();
+            this.pen.moveTo(data.x - this.square / 2, data.y - this.square / 2);
+            this.pen.fillRect(data.x - this.square / 2, data.y - this.square / 2, this.square, this.square);
+        }
+
+        // 坐标转换
+        LineChart.prototype.transform = function (data) {
+
+            var _this = this;
+            var canvasData = [];
+            data.forEach(function (item, i) {
+                canvasData.push({
+                    x: item.x + _this.zeroX,
+                    y: _this.zeroY - item.y
+                })
+                // console.log(_this.zeroY, item.y);
+            })
+            return canvasData;
+        }
+
+        // 数据小点
+        LineChart.prototype.drawDots = function (data) {
+            //
+            var _this = this;
+            // 新建变量接收转换后的数据
+            var data = this.transform(data);
+
+            data.forEach(function (item, i){
+                _this.drawSquare(item);
+
+                if (i == 0) {
+                    _this.drawLine(_this.zeroX, _this.zeroY, item.x, item.y);
+                } else {
+                    _this.drawLine(data[i - 1].x, data[i - 1].y, item.x, item.y);
+                }
+            })
+        }
+        // 实例添加连线
+        LineChart.prototype.drawLine = function (startX, startY, endX, endY) {
+            this.pen.beginPath();
+            this.pen.moveTo(startX, startY);
+            this.pen.lineTo(endX, endY);
+            this.pen.stroke();
+        }
+
+
+
+        // 添加init方法
+        LineChart.prototype.init = function () {
+            // 坐标系
+            this.drawAxis();
+            // 小方块 ????
+            this.drawDots(data);
+        }
+
+
+        var a = new LineChart();
+        a.init();
+    </script>
+</body>
+</html>
