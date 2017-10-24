@@ -7,4 +7,6 @@ if (abc === 5) {
     console.log(jq);
 }
 
-console.log(jq); // jq is not defind
+// console.log(jq); // jq is not defind
+let [a, b, ...c] = [2, 3, 4 , 5, 6, 7, 8];
+console.log(a, b, c);
