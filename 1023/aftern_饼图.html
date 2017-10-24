@@ -9,14 +9,60 @@
 <body>
     <canvas></canvas>
     <script>
-        var canvas = document.getElementsByTagName("canvas")[0];
-        canvas.width = 1200;
-        canvas.height = 400;
-        canvas.style.border = "1px solid #333";
-    
-        var pen = canvas.getContext('2d');
-    
-        
+        // 1.准备数据
+        var data = [
+            {
+            title: '15-20岁',
+            num: 12
+            },
+            {
+            title: '20-25岁',
+            num: 30
+            },
+            {
+            title: '25-30岁',
+            num: 22
+            },
+            {
+            title: '30-35岁',
+            num: 10
+            },
+            {
+            title: '35-100岁',
+            num: 12
+            },
+        ];
+
+        // 构造函数
+        function PiChart() {
+            this.canvas = document.getElementsByTagName("canvas")[0];
+            this.canvas.width = 1200;
+            this.canvas.height = 400;
+            this.canvas.style.border = "1px solid #333";
+            this.pen = canvas.getContext('2d');
+
+            this.width = this.canvas.width;
+            this.height = this.canvas.height;
+            // 原点  半径  延伸线长度
+            this.zeroX = this.width / 2 + 50;
+            this.zeroY = this.height / 2;
+            this.radius = 150;
+            this.lineOut = 20;
+        }
+        // 实例初始化
+        PiChart.prototype.init = function () {
+            this.drawPi(data);
+        }
+
+        // 随机颜色
+        function getRandomColor () {
+            var r = Math.floor(Math.random() * 256);
+            var g = Math.floor(Math.random() * 256);
+            var b = Math.floor(Math.random() * 256);
+        }
+
+        // 转换弧度
+
     </script>
 </body>
 </html>
