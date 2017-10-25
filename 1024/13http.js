@@ -4,7 +4,7 @@ let url = require('url');
 let server = http.createServer();
 // 通过服务器实例来处理请求和响应   get/post + url
 // 通过服务器实例的listen方法来实现端口的监听
-server.listen(3000);
+server.listen(2000);
 
 // 通过服务器实例的request事件来处理客户端的请求并根据情况作出响应
 // 每当修改了nodejs代码后，需要重新启动

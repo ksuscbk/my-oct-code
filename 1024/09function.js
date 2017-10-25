@@ -22,4 +22,4 @@ fn('我是参数');
 
 // 简写
 let bar = () => 'hello';
-bar();
+console.log(bar());
