@@ -39,7 +39,7 @@ app.on('request', (req, res) => {
         // 添加一个学生信息
         case '/create':
             // 接收get上表单传的参数，并处理成对象形式
-            let {query} = url.parse(req.url, true);
+            var {query} = url.parse(req.url, true);
             // 在json文件中追加一个数据
             db.push(query);
 
@@ -56,8 +56,20 @@ app.on('request', (req, res) => {
             break;
         // 删除一个学生信息
         case '/del':
-            // let {del} = url.parse(req.url, true);
-            console.log(req.url);
+            var {query} = url.parse(req.url);
+            var idx = query.split('');
+            idx = idx[idx.length - 1];
+            db.splice(idx, 1);
+            // 写入文件
+            fs.writeFile('./database/students.json', JSON.stringify(db), (err) => {
+                if (!err) {
+                    res.writeHeader(302, {
+                        // 写入数据后跳转到列表页并展示
+                        'Location': './list'
+                    })
+                }
+                res.end();
+            })
             break;
         default: 
             // 处理静态请求
