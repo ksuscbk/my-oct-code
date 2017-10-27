@@ -30,13 +30,15 @@ server.on('request', (req, res) => {
         }) 
     } else {
         let realPath = path.join('./', url);
-        fs.readFile(url, (err, data) => {
-            res.writeHeader(200, {
-                'Content-Type': mime.getType(realPath)
-            })
-            res.write(data);
-            res.end();
-        })
+        fs.readFile(realPath, (err, data) => {
+            if (!err) {
+                res.writeHeader(200, {
+                    'Content-Type': mime.getType(realPath)
+                });
+                res.write(data);
+                res.end();
+            }
+        });
     }
 })
 
