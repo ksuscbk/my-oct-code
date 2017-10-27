@@ -1,8 +1,10 @@
 
 let http = require('http');
-
+let url = require('url');
 let fs = require('fs');
-
+let template = require('art-template');
+template.defaults.root = __dirname;
+template.defaults.extname = '.html';
 let path = require('path');
 
 let app = http.createServer();
@@ -15,29 +17,35 @@ app.listen(3000, (err) => {
 
 app.on('request', (req, res) => {
 
-    // 根据请求做处相应的响应
+    // 根据请求做出相应的响应
     // let realPath = req.url == '/' ? 'index.html' : path.join('.', req.url);
     
-    let realPath = req.url == '/' ? 'doc.html' : req.url;
+    let {pathname} = url.parse(req.url);
+    let realPath = path.join('./', pathname);
 
-    // 
-    realPath = path.join('.', realPath);
-
-    function render(path) {
-        fs.readFile(path, (err, data) => {
-            if(err) {
-                res.writeHeader('404');
-                res.write('<h1>404 Not Found!</h1>');
-
-                return res.end();
-            }
-
-            res.write(data);
-
-            res.end();
-        })
+    res.render = function (tpl, data) {
+        let html = template(tpl, data);
+        res.end(html);
     }
 
-    render(realPath);
+    var title = '呆橘';
+    switch (pathname) {
+        case '/':
+        case '/index':
+            res.render('index', {title: title});
+            break;
+        case '/doc':
+            res.render('doc', {title: title});
+            break;
+        case '/blog':
+            res.render('blog', {title: title});
+            break;
+        default:
+            fs.readFile(realPath, (err, data) => {
+                if (!err) {
+                    res.end(data);
+                }
+            })
+    }
 
 })

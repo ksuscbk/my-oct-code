@@ -1,23 +1,13 @@
 let http = require('http');
 let app = http.createServer();
-
 let url = require('url');
-
 let fs = require('fs');
-
 let path = require('path');
-
-
 let template = require('art-template');
 // template.defaults.root = './';
 template.defaults.root = __dirname;
 template.defaults.extname = '.html';
-
-app.listen(3000, (err) => {
-    if(!err) {
-        console.log('服务器已启动在3000端口');
-    }
-});
+app.listen(3000);
 
 app.on('request', (req, res) => {     
     res.render = function (tpl, data) {
