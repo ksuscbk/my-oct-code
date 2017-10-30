@@ -11,15 +11,7 @@ let fs = require('fs');
 
 let path = require('path');
 
-let mysql = require('mysql');
-// 使用mysql模块提供的方法操作数据库
-    // 连接
-    let connection = mysql.createConnection({
-        host     : 'localhost',
-        user     : 'root',
-        password : '123456',
-        database : 'wish'
-    });
+// let mysql = require('mysql');
 
 let template = require('art-template');
 // template.defaults.root = './';
@@ -45,6 +37,7 @@ app.on('request', (req, res) => {
     let {pathname, query} = url.parse(req.url, true);
 
     let realPath = path.join('./public', pathname);
+    // console.log(realPath);
     switch(pathname) {
         case '/':
 
@@ -61,28 +54,45 @@ app.on('request', (req, res) => {
 
         case '/create':
             // query.id = 5;
+            // console.log(1);
             // 序号
             query.no = Math.ceil(Math.random() * 1000000);
             // 发布时间
             query.datetime = new Date();
-            console.log(query);
+            // console.log(query);
             // console.log(db);
             
             // 执行sql语句
-            connection.query('insert into lists set ?', query, (err, info) => {
-                if (!err) {
-                    // 响应数据为json格式
-                    res.writeHead('200', {
+            // db.query('insert into lists set ?', query, (err, info) => {
+            //     if (!err) {
+            //         // 响应数据为json格式
+            //         console.log(1);
+            //         res.writeHead('200', {
+            //             'Content-Type': 'application/json'
+            //         })
+
+            //         res.end(JSON.stringify({
+            //             code: 555,
+            //             msg: '添加成功!',
+            //             result: query
+            //         }));
+            //     }
+            // })
+            db.query('insert into lists set ?', query, (err, info) => {
+                if(!err) {
+                    // 响应数据为 json 格式
+                    res.writeHeader('200', {
                         'Content-Type': 'application/json'
                     })
 
+                    // 响应结果1
                     res.end(JSON.stringify({
                         code: 555,
                         msg: '添加成功!',
                         result: query
                     }));
                 }
-            })
+            });
             break;
         default: 
             fs.readFile(realPath, (err, data) => {

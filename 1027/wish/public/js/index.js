@@ -1,11 +1,11 @@
-
+var FM, FH;
 $(function () {
 
 	$( '#main' ).height( $( window ).height() - $( '#top' ).height() - 45);
 
 	var paper = $( '.paper' );
-	var FW = $( window ).width();
-	var FH = $( '#main' ).height();
+	FW = $( window ).width();
+	FH = $( '#main' ).height();
 	for (var i = 0; i < paper.length; i++) {
 		var obj = paper.eq(i);
 		obj.css( {
@@ -109,8 +109,8 @@ function drag (obj, element) {
 		top = OY - DY < 0 ? 0 : OY - DY > DH - OH ? DH - OH : OY - DY;
 
 		obj.css({
-			'left' : left + 'px',
-			'top' : top + 'px'
+			'left' : left,
+			'top' : top
 		});
 
 	}).mouseup(function () {
