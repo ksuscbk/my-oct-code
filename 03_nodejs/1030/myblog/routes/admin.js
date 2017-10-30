@@ -10,4 +10,8 @@ admin.get('/index', (req, res) => {
     res.render('admin/index', {})
 })
 
+admin.get('/settings', (req, res) => {
+    
+})
+
 module.exports = admin;
