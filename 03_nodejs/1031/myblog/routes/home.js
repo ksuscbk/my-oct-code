@@ -45,5 +45,21 @@ home.post('/register', (req, res) => {
             });
         }
     })
+
+})
+
+// 登陆
+home.post('/login', (req, res) => {
+    user.auth(req.body.email, req.body.pass, (err, row) => {
+        if (!err) {
+
+            // 存一个session
+            req.session.logininfo = row;
+            res.json({
+                code: 10000,
+                msg: '登陆成功'
+            })
+        }
+    })
 })
 module.exports = home;

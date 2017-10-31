@@ -22,48 +22,44 @@
         </div>
         <table class="table table-hover">
             <tbody>
+                {{#each (posts)}}
                 <tr>
-                    <td width="60" align="center">1</td>
+                    <td width="60" align="center">{{xindex + 1}}</td>
                     <td align="left">
-                        <a class="title" href="javascript:;">JS the Hardcore: 执行上下文(Execution Context)</a>
+                        <a class="title" href="javascript:;">{{this.title}}</a>
                     </td>
                     <td width="120" align="center">
                         <a href="javascript:;" class="btn btn-info btn-xs">编辑</a>
-                        <a href="javascript:;" class="btn btn-warning btn-xs">删除</a>
+                        <!-- 存储id信息 -->
+                        <a href="javascript:;" class="btn btn-warning btn-xs" data-id="{{this.id}}">删除</a>
                     </td>
                 </tr>
-                <tr>
-                    <td width="60" align="center">2</td>
-                    <td align="left">
-                        <a class="title" href="javascript:;">中国第三届CSS开发者大会即将召开</a>
-                    </td>
-                    <td width="120" align="center">
-                        <a href="javascript:;" class="btn btn-info btn-xs">编辑</a>
-                        <a href="javascript:;" class="btn btn-warning btn-xs">删除</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td width="60" align="center">3</td>
-                    <td align="left">
-                        <a class="title" href="javascript:;">weui.js发布</a>
-                    </td>
-                    <td width="120" align="center">
-                        <a href="javascript:;" class="btn btn-info btn-xs">编辑</a>
-                        <a href="javascript:;" class="btn btn-warning btn-xs">删除</a>
-                    </td>
-                </tr>
-                <tr>
-                    <td width="60" align="center">4</td>
-                    <td align="left">
-                        <a class="title" href="javascript:;">中国第三届CSS开发者大会即将召开</a>
-                    </td>
-                    <td width="120" align="center">
-                        <a href="javascript:;" class="btn btn-info btn-xs">编辑</a>
-                        <a href="javascript:;" class="btn btn-warning btn-xs">删除</a>
-                    </td>
-                </tr>
+                {{/each}}
             </tbody>
         </table>
     </div>
 </div>
+{{/block}}
+
+{{#block ('script')}}
+    <script>
+        $('table').on('click', '.delete', function () {
+
+            var id = $(this).attr('data-id');
+
+            // 自己再研究下   找到祖先元素（是tr的）
+            var tr = $(this).parents('tr');
+            $.ajax({
+                url: 'admin/delete',
+                type: 'get',
+                data: {id: id},
+                success: function (info) {
+                    alert(info.msg);
+                    if (info.code == 10000) {
+                        tr.fadeOut(500);
+                    }
+                }
+            });
+        })
+    </script>
 {{/block}}

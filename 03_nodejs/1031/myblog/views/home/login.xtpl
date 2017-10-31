@@ -7,17 +7,17 @@
         <div class="wrapper">
             <div class="contact">
                 <p>有什么问题可以点击下方联系</p>
-                <img src="./images/email.png" alt="">
+                <img src="/home/images/email.png" alt="">
             </div>
             <form action="">
                 <ul>
                     <li>
                         <label for="">邮　箱:</label>
-                        <input type="text">
+                        <input type="text" name="email">
                     </li>
                     <li>
                         <label for="">密　码:</label>
-                        <input type="password">
+                        <input type="password" name="pass">
                     </li>
                     <li>
                         <label for=""></label>
@@ -29,4 +29,24 @@
         </div>
     </div>
 </div>
+{{/block}}
+
+{{#block ('script')}}
+    <script>
+        $('form').on('submit', function () {
+            $.ajax({
+                url: '/login',
+                type: 'post',
+                data: $(this).serialize(),
+                success: function (info) {
+                    if (info.code == 10000) {
+                        location.href = '/admin';
+                    }
+                } 
+
+            })
+
+            return false;
+        })
+    </script>
 {{/block}}
