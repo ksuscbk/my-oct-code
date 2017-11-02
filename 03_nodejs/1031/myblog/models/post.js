@@ -11,9 +11,9 @@ exports.insert = function (data, callback) {
 }
 
 // 查询所有
-exports.findAll = function (...args) {
+exports.findAll = (...args) => {
 
-    let query, offset, pageSize;
+    let query, offset, pageSize, callback;
 
     if (args.length == 1 && typeof args[0] == 'function') {
         query = 'select * from posts left join users on posts.uid = users.id';

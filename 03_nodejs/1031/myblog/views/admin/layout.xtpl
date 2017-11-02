@@ -70,7 +70,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="/logout">
+                            <a href="/admin/logout">
                                 <i class="fa fa-sign-out"></i>
                                 退出
                             </a>

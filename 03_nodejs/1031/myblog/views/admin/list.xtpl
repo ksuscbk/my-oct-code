@@ -31,7 +31,7 @@
                     <td width="120" align="center">
                         <a href="/admin/edit?id={{this.id}}" class="btn btn-info btn-xs">编辑</a>
                         <!-- 存储id信息 -->
-                        <a href="javascript:;" class="btn btn-warning btn-xs" data-id="{{this.id}}">删除</a>
+                        <a href="javascript:;" class="btn btn-warning btn-xs delete" data-id="{{this.id}}">删除</a>
                     </td>
                 </tr>
                 {{/each}}
@@ -43,17 +43,20 @@
 
 {{#block ('script')}}
     <script>
+                   
+    
         $('table').on('click', '.delete', function () {
-
             var id = $(this).attr('data-id');
 
             // 自己再研究下   找到祖先元素（是tr的）
             var tr = $(this).parents('tr');
             $.ajax({
-                url: 'admin/delete',
+                url: '/admin/delete',
                 type: 'get',
                 data: {id: id},
                 success: function (info) {
+            console.log(1);
+                    
                     alert(info.msg);
                     if (info.code == 10000) {
                         tr.fadeOut(500);

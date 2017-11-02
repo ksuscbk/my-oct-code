@@ -21,8 +21,8 @@
                 </nav>
                 <!-- 注册/登录 -->
                 <div class="extra">
-                    <a href="/views/home/register.html">注册</a>
-                    <a href="/views/home/login.html">登录</a>
+                    <a href="/register">注册</a>
+                    <a href="/login">登录</a>
                 </div>
             </div>
         </header>

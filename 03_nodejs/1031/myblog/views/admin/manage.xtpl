@@ -83,6 +83,7 @@
             data: _this.serialize(),
             success: function (info) {
                 if (info.code == 10000) {
+                    console.log(1);
                     location.href = '/admin/list';
                 }
             }

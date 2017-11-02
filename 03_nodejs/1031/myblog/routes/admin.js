@@ -48,7 +48,7 @@ admin.get('/add', (req, res) => {
 admin.get('/edit', (req, res) => {
     // 根据参数id获取文章内容展示在页面上
     post.find(req.query.id, (err, rows) => {
-        console.log(err);
+        // console.log(err);
         if (!err) {
             res.render('admin/manage', {
                 post: rows[0],
@@ -78,6 +78,7 @@ admin.get('/list', (req, res) => {
             return res.send('数据库错误');
         }
         // 模板引擎需要的是对象形式的数据
+        // console.log(rows)
         res.render('admin/list', {posts: rows});
     })
 })
@@ -88,8 +89,8 @@ admin.get('/repass', (req, res) => {
 
 // 退出
 admin.get('/logout', (req, res) => {
-    req.session.logininfo = null;
-    res.redirect = '/login';
+    req.session.loginfo = null;
+    res.redirect('/login');
 })
 
 // 添加博客文章
@@ -110,7 +111,9 @@ admin.post('/add', (req, res) => {
 // 删除文章
 admin.get('/delete', (req, res) => {
     // get方式的参数可以通过req.query接收
+    // console.log(req.query.id);
     post.delete(req.query.id, (err) => {
+        console.log(err);
         if (!err) {
             res.json({
                 code: 10000,
