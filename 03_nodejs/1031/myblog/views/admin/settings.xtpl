@@ -8,8 +8,13 @@
                 <div class="form-group">
                     <label for="" class="col-xs-3 control-label">头像</label>
                     <div class="col-xs-2 preview">
-                        <img src="/admin/{{user.avatar}}">
+                        {{#if (user.avatar)}}
+                        <img src="{{user.avatar}}">
+                        {{else}}
+                        <img src="/admin/monkey.png">
+                        {{/if}}
                         <input type="file" id="upfile">
+                        <input type="hidden" name="avatar">
                         <div class="cover">
                             <i class="fa fa-upload"></i>
                         </div>
@@ -83,6 +88,24 @@
                 }
             });
             return false;
+        })
+
+        // 头像上传
+        $('#upfile').on('change', function () {
+            var data = new FormData;
+            data.append('avatar', this.files[0]);
+
+            var xhr = new XMLHttpRequest;
+            xhr.open('post', '/admin/upfile');
+            xhr.send(data);
+            xhr.onreadystatechange = function () {
+                if (xhr.status == 200 && xhr.readyState == 4) {
+                    var result = JSON.parse(xhr.responseText);
+                    $('.preview img').attr('src', '/' + result.result.path);
+
+                    $('input[name="avatar"]').val('/' + result.result.path);
+                }
+            }
         })
     </script>
 {{/block}}

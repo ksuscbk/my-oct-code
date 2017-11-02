@@ -24,7 +24,7 @@
         <div class="navs">
             <ul class="list-unstyled">
                 <li>
-                    <a href="./index.html" class="active">
+                    <a href="/" class="active">
                         <i class="fa fa-dashboard"></i>
                         仪表盘
                     </a>
@@ -42,7 +42,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="./blog_list.html">
+                            <a href="/admin/list">
                                 我的文章
                             </a>
                         </li>

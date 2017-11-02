@@ -1,4 +1,5 @@
-{{extend ('./layout.xtpl')}} {{#block ('jq')}}
+{{extend ('./layout.xtpl')}} 
+{{#block ('jq')}}
 <!-- 写文章 -->
 <div class="body blog">
     <!-- 面包屑 -->
@@ -9,23 +10,27 @@
         <li class="active">写文章</li>
     </ol>
     <div class="settings">
-        <form action="" class="form-horizontal">
+        <!-- 使用变量完成更新区分添加 -->
+        <form action="{{action}}" class="form-horizontal">
+            {{#if (action !== '/admin/add')}}
+            <input type="hidden" name="id" value="{{post.id}}">
+            {{/if}}
             <div class="form-group">
-                <label for="" class="col-xs-3 control-label">标题</label>
+                <label for="" class="col-xs-3 control-label"></label>
                 <div class="col-xs-6">
-                    <input type="text" class="form-control input-sm" name="title">
+                    <input type="text" class="form-control input-sm" value="{{post.title}}">
                 </div>
             </div>
             <div class="form-group">
                 <label for="" class="col-xs-3 control-label">摘要</label>
                 <div class="col-xs-6 ckeditor">
-                    <textarea name="brief" rows="5" class="form-control input-sm"></textarea>
+                    <textarea name="brief" rows="5" class="form-control input-sm">{{post.brief}}</textarea>
                 </div>
             </div>
             <div class="form-group">
-                <label for="" class="col-xs-3 control-label">内容</label>
+                <label for="" class="col-xs-3 control-label"></label>
                 <div class="col-xs-6">
-                    <textarea id="ckeditor" class="form-control input-sm" name="content"></textarea>
+                    <textarea id="ckeditor" class="form-control input-sm" name="content">{{post.content}}</textarea>
                 </div>
             </div>
             <div class="form-group">
@@ -65,14 +70,20 @@
     });
 
     $('form').on('submit', function () {
+        for (instance in CKEDITOR.instances){
+            CKEDITOR.instances[instance].updateElement();
+        }
+
         var _this = $(this);
+        // 区分添加修改
+        var url = _this.attr('action');
         $.ajax({
-            url: '/admin/add',
+            url: url,
             type: 'post',
             data: _this.serialize(),
             success: function (info) {
                 if (info.code == 10000) {
-                    location.href = '/list';
+                    location.href = '/admin/list';
                 }
             }
         })

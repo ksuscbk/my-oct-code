@@ -29,7 +29,7 @@
                         <a class="title" href="javascript:;">{{this.title}}</a>
                     </td>
                     <td width="120" align="center">
-                        <a href="javascript:;" class="btn btn-info btn-xs">编辑</a>
+                        <a href="/admin/edit?id={{this.id}}" class="btn btn-info btn-xs">编辑</a>
                         <!-- 存储id信息 -->
                         <a href="javascript:;" class="btn btn-warning btn-xs" data-id="{{this.id}}">删除</a>
                     </td>

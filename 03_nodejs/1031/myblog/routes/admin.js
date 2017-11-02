@@ -4,6 +4,23 @@ let admin = express.Router();
 // 操作文章
 let post = require('../models/post');
 
+// 中间件
+let multer = require('multer');
+// let upload = multer({dest: 'public/admin/uploads/avatar'}); // 文件上传到什么位置
+// 通过 diskStorage 实现目录位置和文件名的自定义操作
+var storage = multer.diskStorage({
+    // 自定义文件目录
+    destination: function (req, file, cb) {
+        cb(null, 'public/admin/uploads/avatar');
+    },
+    // 自定义文件名称
+    filename: function (req, file, cb) {
+        let extname = file.originalname.slice(file.originalname.lastIndexOf('.'));
+        cb(null, file.fieldname + '-' + Date.now() + extname);
+    }
+})
+var upload = multer({storage: storage});
+
 // 操作用户
 let user = require('../models/user');
 admin.get('/', (req, res) => {
@@ -23,13 +40,39 @@ admin.get('/settings', (req, res) => {
         }
     });
 })
-
+// 添加文章
 admin.get('/add', (req, res) => {
-    res.render('admin/add', {});
+    res.render('admin/manage', {action: '/admin/add'});
+})
+// 编辑文章
+admin.get('/edit', (req, res) => {
+    // 根据参数id获取文章内容展示在页面上
+    post.find(req.query.id, (err, rows) => {
+        console.log(err);
+        if (!err) {
+            res.render('admin/manage', {
+                post: rows[0],
+                action: '/admin/modify'
+            });
+        }
+    })
 })
 
+admin.post('/modify', (req, res) => {
+    // 主键 不能修改的处理
+    let id = req.body.id;
+    delete req.body.id;
+    post.update(id, req.body, (err) => {
+        if (!err) {
+            res.json({
+                code: 10000,
+                msg: '修改成功'
+            })
+        }
+    })
+})
+// 文章列表页
 admin.get('/list', (req, res) => {
-    res.render('admin/list', {});
     post.findAll((err, rows) => {
         if (err) {
             return res.send('数据库错误');
@@ -85,6 +128,18 @@ admin.post('/update', (req, res) => {
                 code: 10000,
                 msg: '更新成功'
             })
+        }
+    })
+})
+
+// 头像上传
+admin.post('/upfile', upload.single('avatar'), (req, res) => {
+    // console.log(req.file.path);
+    res.json({
+        code: 10000,
+        msg: '上传成功',
+        result: {
+            path: req.file.path
         }
     })
 })

@@ -4,13 +4,45 @@ let home = express.Router();
 // 处理用户数据
 let user = require('../models/user');
 
+// 博客
+let post = require('../models/post');
+
 // 前台子路由
 home.get('/', (req, res) => {
-    res.render('home/index', {})
+
+    // 每页几条数据        当前第几页     总共多少页   
+    let pageSize = 2;
+    // 当前页
+    let page = req.query.page || 1;
+
+    post.count((err, row) => {
+        if (err) return;
+        // 总文章数    我封装的方法返回的是数组，所以要二次取值
+        let total = row[0].total;
+        // 页数
+        let pages = Math.ceil(total / pageSize);
+
+        post.findAll(pageSize, page, (err, rows) => {
+            if (!err) {
+                res.render('home/index', {
+                    post: rows,
+                    pages: pages,
+                    page: page
+                });
+            }
+        })
+    })
+
+    
 })
 
+// 文章页
 home.get('/article', (req, res) => {
-    res.render('home/article', {})
+    post.find(req.query.id, (err, rows) => {
+        if (!err) {
+            res.render('home/article', {post: rows[0]});
+        }
+    })
 })
 
 home.get('/about', (req, res) => {
@@ -62,4 +94,7 @@ home.post('/login', (req, res) => {
         }
     })
 })
+
+
+
 module.exports = home;

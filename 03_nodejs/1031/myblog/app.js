@@ -4,6 +4,7 @@ app.listen(3000);
 app.set('view engine', 'xtpl');
 app.set('views', './views');
 app.use(express.static('./public'));
+app.use('/public', express.static('./public'));
 
 // 解析post数据的中间件
 let bodyParser = require('body-parser');
@@ -19,6 +20,8 @@ app.use(session({
     // secure需要支持https协议
     // cookie: { secure: false }
 }))
+
+
 
 // 检测是否登陆的中间件,在后台网站    http要求在请求头设置前不允许有响应主体
 app.use('/admin', (req, res, next) => {
