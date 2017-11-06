@@ -551,6 +551,16 @@ template {
     font-size: 16px;
   }
 }
+@media screen and (width: 960px) {
+  html {
+    font-size: calc(48px);
+  }
+}
+@media screen and (width: 1366px) {
+  html {
+    font-size: calc(68.3px);
+  }
+}
 @media screen and (width: 360px) {
   html {
     font-size: 18px;
