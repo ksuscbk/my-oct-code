@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="A" class="a">A</div>
+    <div id="B" class="b" style="display:none;">B</div>
+    <div id="C" class="c" style="display:none;">C</div>
+
+
+    <script>
+        function hashChanged(hashObj) {
+            // console.log('hashChanged')
+            console.log(hashObj);
+            // 获取新旧url
+            var newhash = hashObj.newURL.split('#/')[1];
+            var oldhash = hashObj.oldURL.split('#/')[1];
+            document.getElementById(oldhash).style.display = 'none';
+            document.getElementById(newhash).style.display = 'block';
+        }
+
+        window.onhashchange = hashChanged;
+    </script>
+</body>
+
+</html>
