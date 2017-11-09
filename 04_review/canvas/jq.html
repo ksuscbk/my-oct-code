@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>jq</title>
+</head>
+<body>
+    <canvas></canvas>
+    <script>
+        var canvas = document.getElementsByTagName('canvas')[0];
+        canvas.width = 1200;
+        canvas.height = 500;
+        canvas.style.border = '1px solid red';
+
+        var pen = canvas.getContext('2d');
+
+        pen.moveTo(80, 50);
+        // J
+        pen.lineTo(180, 50);
+        pen.lineTo(130, 50);
+        pen.lineTo(130, 400);
+        pen.lineTo(90, 360);
+        // I
+        pen.moveTo(220, 50);
+        pen.lineTo(280, 50);
+        pen.lineTo(250, 50);
+        pen.lineTo(250, 400);
+        pen.lineTo(220, 400);
+        pen.lineTo(280, 400);
+        // A
+        pen.moveTo(380, 50);
+        pen.lineTo(340, 400);
+        pen.moveTo(380, 50);
+        pen.lineTo(420, 400);
+        pen.moveTo(360, 225)        
+        pen.lineTo(400, 225);
+
+        pen.strokeStyle = 'silver';
+        pen.lineCap = 'round';
+        // pen.lineCap = 'square';
+        pen.lineJoin = 'bevel';
+        pen.lineWidth = 10;
+        pen.stroke();
+    </script>
+</body>
+</html>
