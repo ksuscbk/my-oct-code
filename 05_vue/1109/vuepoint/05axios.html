@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="box">
+        <button @click="hello">按钮</button>
+
+    </div>
+    <script src="./js/vue.min.js"></script>
+    <script src="./node_modules/axios/dist/axios.min.js"></script>
+    <script>
+        new Vue({
+            el: '#box',
+            data: function () {
+                return {
+
+                }
+            },
+            methods: {
+                hello: function () {
+                    // 发送请求
+                    axios.get('').then(function (info) {
+                        console.log(info);
+                    }).catch(function (err) {
+                        console.log(err);
+                    })
+                }
+            }
+        })
+    </script>
+</body>
+</html>

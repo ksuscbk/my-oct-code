@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="box">
+        {{birthday | getAge}}
+    </div>
+
+    <script src="./js/vue.min.js"></script>
+    <script>
+        // 公有过滤器
+        Vue.filter('getage', function () {
+            
+        })
+
+
+        new Vue({
+            el: '#box',
+            data: function () {
+                return {
+                    birthday: '1995/5/5' 
+                }
+            },
+
+            // 过滤器 集合  
+            filters: {
+                getAge: function (jq) {
+                    var jqB = new Date(jq);
+                    var jqBY = jqB.getFullYear();
+                    var now = new Date().getFullYear();
+                    return now - jqBY;
+                }
+            }
+        })
+    </script>
+</body>
+</html>

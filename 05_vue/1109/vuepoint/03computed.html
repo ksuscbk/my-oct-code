@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="box">
+        {{msg}}
+        <input type="text" v-model="msg">
+        {{myMsg}}
+    </div>
+
+    <script src="./js/vue.min.js"></script>
+    <script>
+        new Vue({
+            el: '#box',
+            data: function () {
+                return {
+                    msg: '你好我好大家好' 
+                }
+            },
+
+            // 计算属性
+            computed:{
+                myMsg: function () {
+                    return this.msg + '.jpg';
+                }
+            }
+        })
+    </script>
+</body>
+</html>

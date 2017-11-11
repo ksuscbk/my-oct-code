@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>v-for</title>
+</head>
+
+<body>
+    <div id="box">
+        {{msg}}
+        <div v-for="a in list">
+            <ul>
+                <li>{{a}}</li>
+            </ul>
+        </div>
+
+        <div v-for="a in 'wozuibang'">
+            <ol>
+                <li>{{a}}</li>
+            </ol>
+        </div>
+
+        <div v-for="a in 18">
+            <ul>
+                <li>{{a}}</li>
+            </ul>
+        </div>
+
+        <div v-for="a in jq">
+            <ul>
+                <li>{{a}}</li>
+            </ul>
+        </div>
+    </div>
+    <script src="./js/vue.min.js"></script>
+    <script>
+        new Vue({
+            el: '#box',
+            data: function () {
+                return {
+                    msg: '你好',
+                    list: ['狼厂', '鹅厂', '鸟厂', '马厂', '数字工厂', '猫场'],
+                    jq: {
+                        name: '小明',
+                        age: 23
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

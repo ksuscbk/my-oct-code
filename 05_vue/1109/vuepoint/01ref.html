@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="box">
+        <input type="text" v-model="msg">
+        <button ref="btn">{{msg}}</button>
+    </div>
+
+    <script src="./js/vue.min.js"></script>
+    <script>
+        new Vue({
+            el: '#box',
+            data: function () {
+                return {
+                    msg: '你好',
+                    
+                }
+            },
+
+            // VUE中获取DOM元素需要在mounted方法里获取
+            mounted: function () {
+                this.$refs.btn.innerHTML = 'jqqqqq';
+            }
+        })
+    </script>
+</body>
+</html>
