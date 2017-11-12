@@ -1,5 +1,5 @@
 
-// import Vue from 'vue';
+import Vue from 'vue';
 import Jq from '../components/app.vue';
 
 new Vue({
