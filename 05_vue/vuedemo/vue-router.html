@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+        <a href="#/news">news</a>
+        <a href="#/share">share</a>
+        <router-view></router-view>
+    </div>
+    <script src="./node_modules/vue/dist/vue.min.js"></script>
+    <script src="./node_modules/vue-router/dist/vue-router.min.js"></script>
+    <script>
+
+        var news = Vue.component('news', {
+            template: '<h2>状难写之景如在目前</h2>'
+        })
+
+        var share = Vue.component('share', {
+            template: '<h2>含不尽之意见于言外</h2>'
+        })
+
+        var router = new VueRouter({
+            routes: [
+                {name: 'news', path: '/news', component: news},
+                {name: 'share', path: '/share', component: share}
+            ]
+        })
+
+        new Vue({
+            el: '#app',
+            router: router
+        })
+
+
+    </script>
+</body>
+</html>
