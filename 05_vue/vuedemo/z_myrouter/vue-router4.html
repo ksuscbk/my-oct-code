@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+
+    <div id="app">
+        <a href="#/game">游戏中心</a>
+        <a href="#/sport">体育频道</a>
+        <router-view></router-view>
+    </div>
+    <script src="../node_modules/vue/dist/vue.min.js"></script>
+    <script src="../node_modules/vue-router/dist/vue-router.js"></script>
+    <script>
+
+        var game = Vue.component('game', {
+            template: '<h1 style="border: 1px solid #ccc">游戏中心</h1>'
+        })
+
+        var sport = Vue.component('sport', {
+            template: '<h1 style="color:red">体育新闻</h1>'
+        })
+
+        var router = new VueRouter({
+            routes: [
+                {name: 'game', path: '/game', component: game},
+                {name: 'sport', path: '/sport', component: sport}
+            ]
+        })
+
+
+
+        new Vue({
+            el: '#app',
+            router
+        })
+    </script>
+</body>
+</html>
