@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>员工编码问题</title>
+</head>
+<body>
+    10000个员工编码，除去所有带4的号码，最后一位员工的编号为<button></button>个
+    <script>
+        // 利用数组
+        // var num = 10000, num4 = 0;
+        // var str, arr;
+        // for (var i = 1; i <= num; i++) {
+        //     str = i.toString();
+        //     arr = str.split("");
+        //     for (var j = 0; j < arr.length; j++) {
+        //         if (arr[j] === "4") {
+        //             num4++;
+        //             console.log(arr);
+        //         }
+        //     }
+        // }
+        // console.log(num4);
+
+        // 上面的太麻烦 利用字符串API
+        
+        function getNum() {
+            var num = 10000, num4 = 0, str;
+            for (var i = 1; i < num; i++) {
+                // 转为字符串
+                str = i.toString();
+                // 字符串中字符为含4的就让num4自增一次
+                for (var j = 0; j < str.length; j++) {
+                    if (str.charAt(j) === "4") {
+                        num4++;
+                    }
+                }
+            }
+            console.log(num4);
+        }
+        
+        getNum();
+    </script>
+</body>
+</html>
