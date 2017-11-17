@@ -3,7 +3,7 @@
         <!-- 新闻列表 mui框架的 -->
             <ul class="mui-table-view">
                 <li v-for="(item, index) in newsListData" :key="index" class="mui-table-view-cell mui-media">
-                    <a href="javascript:;">
+                    <router-link v-bind='{to:"/newsdetail/"+item.id}'>
                         <img class="mui-media-object mui-pull-left" :src="item.img_url">
                         <div class="mui-media-body">
                             <h3>{{item.title}}</h3>
@@ -12,7 +12,7 @@
                                 <span>点击量: {{item.click}}</span>
                             </p>
                         </div>
-                    </a>
+                    </router-link>
                 </li>
             </ul>
     </div>
@@ -34,7 +34,7 @@
                 var url = `${tools.HTTP}${tools.SERVER_PATH}/api/getnewslist`
                 this.$http.get(url).then(
                     res => {
-                        console.log(res)
+                        // console.log(res)
                         this.newsListData = res.body.message
                     },
                     res => {
@@ -60,9 +60,9 @@
         overflow: hidden;
         text-overflow: ellipsis;
     }
-    .mui-table-view h3:hover {
+    /* .mui-table-view h3:hover {
         animation: textanimate 1s linear infinite;
-    }
+    } */
 
     @keyframes textanimate {
         0% {

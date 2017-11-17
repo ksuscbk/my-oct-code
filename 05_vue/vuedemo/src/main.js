@@ -21,10 +21,20 @@ import VueRouter from 'vue-router';
 Vue.use(VueRouter);
 // 页面路由
 import home from './components/home.vue';
+// 会员页
 import member from './components/member.vue';
+// 购物车
 import shopcar from './components/shopcar.vue';
+// 搜索
 import search from './components/search.vue';
+// 新闻列表
 import newslist from './components/newslist.vue';
+// 新闻详情
+import newsdetail from './components/newsdetail.vue';
+// 图片列表
+import photolist from './components/photolist.vue';
+// 图片详情
+import photodetail from './components/photodetail.vue';
 // 管理路由
 var router = new VueRouter({
     // 自动检测选中项   更改样式
@@ -36,7 +46,10 @@ var router = new VueRouter({
         {name: 'member', path: '/member', component: member},
         {name: 'shopcar', path: '/shopcar', component: shopcar},
         {name: 'search', path: '/search', component: search},
-        {name: 'newslist', path: '/newslist', component: newslist}
+        {name: 'newslist', path: '/newslist', component: newslist},
+        {name: 'newsdetail', path: '/newsdetail/:id', component: newsdetail},
+        {name: 'photolist', path: '/photolist', component: photolist},
+        {name: 'photodetail', path: '/photodetail', component: photodetail}
     ]
     
 })
