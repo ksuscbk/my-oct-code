@@ -18,10 +18,10 @@
                     </router-link>
                 </li>
                 <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
-                    <a href="#">
+                    <router-link to="/goodslist">
                         <span class="mui-icon chat"></span>
-                        <div class="mui-media-body">购物车</div>
-                    </a>
+                        <div class="mui-media-body">商品列表</div>
+                    </router-link>
                 </li>
                 <li class="mui-table-view-cell mui-media mui-col-xs-4 mui-col-sm-3">
                     <a href="#">

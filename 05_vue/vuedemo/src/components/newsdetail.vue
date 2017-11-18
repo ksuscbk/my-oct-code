@@ -8,20 +8,28 @@
         <div class="content">
             <p v-html="newsDetailData.content"></p>
         </div>
+        <!-- 添加评论组件 -->
+        <discuss :recId="commentId"></discuss>
     </div>
 </template>
 
 <script>
     import tools from '../tools/tools';
+    import discuss from './son/discuss.vue';
     export default {
         data () {
             return {
-                newsDetailData: {}
+                newsDetailData: {},
+                commentId: 0
             }
+        },
+        components: {
+            discuss
         },
         
         created () {
             this.getNewsDetailData(this.$route.params.id);
+            this.commentId = this.$route.params.id;
         },
         methods: {
             getNewsDetailData (id) {

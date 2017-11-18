@@ -14,6 +14,9 @@ import './static/css/mui.min.css';
 // vue发送请求  axios不支持json请求    vue-resource支持json请求
 import VueResource from 'vue-resource';
 Vue.use(VueResource);
+// 图片预览展示
+import vuePicturePreview from 'vue-picture-preview'
+Vue.use(vuePicturePreview)
 
 
 // vue-router控制路由
@@ -35,6 +38,8 @@ import newsdetail from './components/newsdetail.vue';
 import photolist from './components/photolist.vue';
 // 图片详情
 import photodetail from './components/photodetail.vue';
+// 商品列表
+import goodslist from './components/goodslist.vue';
 // 管理路由
 var router = new VueRouter({
     // 自动检测选中项   更改样式
@@ -49,7 +54,9 @@ var router = new VueRouter({
         {name: 'newslist', path: '/newslist', component: newslist},
         {name: 'newsdetail', path: '/newsdetail/:id', component: newsdetail},
         {name: 'photolist', path: '/photolist', component: photolist},
-        {name: 'photodetail', path: '/photodetail', component: photodetail}
+        {name: 'photodetail', path: '/photodetail/:id', component: photodetail},
+        {name: 'goodslist', path: '/goodslist', component: goodslist}
+
     ]
     
 })

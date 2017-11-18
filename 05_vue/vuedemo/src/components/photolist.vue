@@ -9,7 +9,7 @@
             </li>
         </ul>
         <div class="image" v-for="(item, index) in imgData" :key="index">
-            <router-link to="/photodetail">
+            <router-link v-bind='{to:"/photodetail/"+item.id}'>
                 <img :src="item.img_url" alt="">
                 <div class="zhaiyao">
                     <p>{{item.zhaiyao}}</p>
