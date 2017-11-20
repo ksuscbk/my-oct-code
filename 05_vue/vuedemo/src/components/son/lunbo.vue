@@ -3,7 +3,8 @@
         <mt-swipe :auto="4000">
             <mt-swipe-item class="slide1" v-for="(item, index) in lunboData" :key="index">
                 <a :href="item.url">
-                    <img :src="item.img" alt="" class="img">
+                    <img v-if="item.url" :src="item.img" alt="" class="img">
+                    <img v-else :src="item.src" alt="" class="img">
                 </a>
             </mt-swipe-item>
         </mt-swipe>

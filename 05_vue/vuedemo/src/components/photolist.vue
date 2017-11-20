@@ -77,6 +77,7 @@
         padding: 2px;
         font-size: 12px;
         overflow-x: auto;
+        height: 40px;
     }
     li {
         /* white-space: nowrap; */

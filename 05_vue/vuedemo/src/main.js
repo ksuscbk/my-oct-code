@@ -40,6 +40,12 @@ import photolist from './components/photolist.vue';
 import photodetail from './components/photodetail.vue';
 // 商品列表
 import goodslist from './components/goodslist.vue';
+// 商品详情
+import goodsinfo from './components/goodsinfo.vue';
+// 商品描述
+import goodsdesc from './components/goodsdesc.vue';
+// 评论
+import comment from './components/comment.vue';
 // 管理路由
 var router = new VueRouter({
     // 自动检测选中项   更改样式
@@ -55,7 +61,10 @@ var router = new VueRouter({
         {name: 'newsdetail', path: '/newsdetail/:id', component: newsdetail},
         {name: 'photolist', path: '/photolist', component: photolist},
         {name: 'photodetail', path: '/photodetail/:id', component: photodetail},
-        {name: 'goodslist', path: '/goodslist', component: goodslist}
+        {name: 'goodslist', path: '/goodslist', component: goodslist},
+        {name: 'goodsinfo', path: '/goodsinfo/:id', component: goodsinfo},   
+        {name: 'goodsdesc', path: '/goodsdesc', component: goodsdesc},   
+        {name: 'comment', path: '/comment', component: comment}
 
     ]
     
