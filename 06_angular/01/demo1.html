@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div ng-app="app" ng-controller="appController">
+        <p>{{username}}</p>
+        <input type="text" ng-model="username">
+        <table>
+            <tr>
+                <td>姓名</td>
+                <td>年龄</td>
+            </tr>
+            <tr ng-repeat="item in list">
+                <td>{{item.username}}</td>
+                <td>{{item.age}}</td>
+            </tr>
+        </table>
+    </div>
+    <script src="../libs/node_modules/angular/angular.min.js"></script>
+    <script>
+        // 特性  模块化   双向数据绑定   指令  过滤器       服务   依赖注入
+        // 第一个需要实例化的应用的名称，第二个需要依赖的模块，是一个数组，如果不需要，传入空数组
+        var App = angular.module("app",[])
+
+
+        // 如何实现mvc的呢   找到model层，view层,  使用ng-controller指令去关联对应的控制器
+        // angular里面一个简单的mvc设计结构
+        App.controller("appController", ["$scope", function ($scope) {
+            $scope.username = '焦强';
+            $scope.list=[
+                {
+                    username: "小美",
+                    age: 25
+                },
+                {
+                    username: "焦强",
+                    age: 24
+                }
+            ]
+        }]);
+    </script>
+</body>
+</html>
