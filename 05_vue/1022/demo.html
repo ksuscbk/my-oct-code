@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        h1 {
+            font-size: 22px;
+            padding: 5px;
+        }
+
+        .summary {
+            display: flex;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div class="art" v-for="(item, index) in article" :key="index">
+            <h1>{{item.title}}</h1>
+            <div class="summary">
+                <span>{{item.author}}</span>
+                <span>{{item.fenlei}}</span>
+            </div>
+        </div>
+    
+    </div>
+    <script src="./js/vue.min.js"></script>
+    <script>
+        new Vue({
+            el: "#app",
+            data () {
+                return {
+                    article: {
+                        title: '陈星资本刘茜，做企业不仅要务实，也要学会务虚·····',
+                        date: '2017-11-22',
+                        author: '焦强',
+                        fenlei: '体育竞技',
+                        content: '本文采用排比本文采用排比本文采用排比本文采用排比本文采用排比本文采用排比本文采用排比本文采用排比',
+                        src: '../jq.jpg'
+                    }
+                    
+                }
+            },
+            methods: {
+
+            }
+        })
+    </script>
+</body>
+</html>

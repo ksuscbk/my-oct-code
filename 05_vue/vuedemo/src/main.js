@@ -1,6 +1,10 @@
 import Vue from 'vue';
 import App from './app.vue';
 
+// 引入vueX
+import store from './store/store';
+
+
 // 引入mint-ui
 import MintUI from 'mint-ui';
 import 'mint-ui/lib/style.css';
@@ -46,6 +50,8 @@ import goodsinfo from './components/goodsinfo.vue';
 import goodsdesc from './components/goodsdesc.vue';
 // 评论
 import comment from './components/comment.vue';
+// vuex
+import count from './components/count.vue';
 // 管理路由
 var router = new VueRouter({
     // 自动检测选中项   更改样式
@@ -64,7 +70,8 @@ var router = new VueRouter({
         {name: 'goodslist', path: '/goodslist', component: goodslist},
         {name: 'goodsinfo', path: '/goodsinfo/:id', component: goodsinfo},   
         {name: 'goodsdesc', path: '/goodsdesc', component: goodsdesc},   
-        {name: 'comment', path: '/comment', component: comment}
+        {name: 'comment', path: '/comment', component: comment},
+        {name: 'count', path: '/count', component: count}
 
     ]
     
@@ -83,5 +90,6 @@ new Vue({
     //     createElement(App)
     // }
     render: createElement => createElement(App),
-    router:router
+    router:router,
+    store // 使用store
 })
