@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h2></h2>
+    <script>
+        // h2标签中的内容和obj1.msg一样
+        // 让obj2代理obj1的msg属性，修改obj2的属性时，修改obj1的值并对obj1赋值
+
+        var obj1 = {};
+        var obj2 = {};
+        Object.defineProperty(obj2, 'msg', {
+            get: function () {
+
+            },
+            set: function (arg) {
+                obj1.msg = arg;
+                document.querySelector('h2').innerHTML = obj1.msg;
+            }
+        })
+
+    </script>
+    <script></script>
+</body>
+</html>
