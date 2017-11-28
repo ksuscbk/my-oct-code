@@ -6,18 +6,18 @@
             <div class="profile">
                 <!-- 头像 -->
                 <div class="avatar img-circle">
-                    <img src="../assets/img/avatar.jpg">
+                    <img :src="user.avatar">
                 </div>
-                <h4>测试测试</h4>
+                <h4>{{user.username}}</h4>
             </div>
             <!-- 导航菜单 -->
             <div class="navs">
                 <ul class="list-unstyled">
                     <li>
-                        <a href="../index/dashboard.html" class="active">
+                        <router-link :to="{name: 'dashboard'}" class="active">
                             <i class="fa fa-home"></i>
                             仪表盘
-                        </a>
+                        </router-link>
                     </li>
                     <li>
                         <a href="../user/list.html">
@@ -32,12 +32,12 @@
                         </a>
                     </li>
                     <li>
-                        <a href="javascript:;">
+                        <a @click="isShowCourse = !isShowCourse" href="javascript:;">
                             <i class="fa fa-cog"></i>
                             课程管理
                             <i class="arrow fa fa-angle-right"></i>
                         </a>
-                        <ul class="list-unstyled">
+                        <ul v-show="isShowCourse" class="list-unstyled">
                             <li>
                                 <a href="../course/add.html">
                                     课程添加
@@ -67,12 +67,12 @@
                         </a>
                     </li>
                     <li>
-                        <a href="javascript:;">
+                        <a @click="isShowSystem = !isShowSystem" href="javascript:;">
                             <i class="fa fa-cog"></i>
                             系统设置
                             <i class="arrow fa fa-angle-right"></i>
                         </a>
-                        <ul class="list-unstyled">
+                        <ul v-show="isShowSystem" class="list-unstyled">
                             <li>
                                 <a href="javascript:;">
                                     网站设置
@@ -108,13 +108,13 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="../index/settings.html">
+                                <router-link to="/center">
                                     <i class="fa fa-user"></i>
                                     个人中心
-                                </a>
+                                </router-link>
                             </li>
                             <li>
-                                <a href="javascript:;">
+                                <a @click.prevent="logout">
                                     <i class="fa fa-sign-out"></i>
                                     退出
                                 </a>
@@ -127,19 +127,78 @@
                         </ul>
                     </nav>
                 </div>
-                <!-- 组件化 -->
-                <router-view></router-view>
+                <!-- 个人资料 -->
+                <router-view>
+                </router-view>
             </div>
         </div>
     </div>
 </template>
 
 <script>
-    export default {
+import bus from '../bus.js'
+export default {
 
+    data () {
+        return {
+            user: {},
+            isShowCourse: false,
+            isShowSystem: false
+        }
+    },
+    watch: {
+        // 方法名和要监视的属性名要一致
+        // isShowCourse 改变时触发的方法
+        isShowCourse () {
+            // console.log(this.isShowCourse)
+            localStorage.setItem('isShowCourse', this.isShowCourse)
+        },
+        isShowSystem () {
+            localStorage.setItem('isShowSystem', this.isShowSystem)
+        }
+    },
+    created () {
+        bus.$on('avatar', (img) => {
+            // alert(img)
+            this.user.avatar = img
+            // 把头像保存到本地存储
+            localStorage.setItem('userinfo', JSON.stringify(this.user))
+        })
+        // 查询本地用户登陆信息
+        this.readUserInfo()
+        // 查询是否登录
+        this.isSignIn()
+    },
+    methods: {
+        // 获取本地登录信息
+        readUserInfo () {
+            // 获取本地存储信息
+            this.user = JSON.parse(localStorage.getItem('userinfo') || '{}')
+        },
+        // 查询是否登陆
+        isSignIn () {
+            this.axios.get('http://bxg.huoqishi.net/user/status').then(
+                res => {
+                    if (res.data.errcode !== 0) {
+                        alert(res.data.errmsg)
+                        this.$router.push({name: 'signin'})
+                        return
+                    }
+                }
+            )
+        },
+        // 退出
+        logout () {
+            this.axios.post('http://bxg.huoqishi.net/signout').then(
+                res => {
+                    if (res.data.errcode !== 0) {
+                        return alert(res.data.errmsg)
+                    }
+                    alert('退出成功')
+                    this.$router.push({name: 'signin'})
+                }
+            )
+        }
     }
+}
 </script>
-
-<style>
-
-</style>
